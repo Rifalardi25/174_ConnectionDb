@@ -2,7 +2,7 @@ import express from 'express'
 import pg from 'pg'
 const app = express()
 const port = 3000
-const [Pool] = pg;
+const {Pool} = pg;
 
 app.use(express.json())
 
@@ -16,7 +16,7 @@ app.use(
         )
 )
 
-const pool = new pool({
+const pool = new Pool({
 
     user: "postgres",
     host: "localhost",
@@ -51,6 +51,6 @@ app.get('/', (req, res, next) => {
 
 app.listen(port, () => {
 
-    console.log('Server running on port ${port}');
+    console.log(`Server running on port ${port}`);
 
 })
