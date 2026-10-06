@@ -24,3 +24,27 @@ const pool = new pool({
     password: "mustofa25",
     port: "5432",
 })
+
+app.get('/', (req, res, next) => {
+
+    console.log("TEST DATABASE CONNECTION");
+
+    pool.query('select * from biodata')
+
+        .then(testData => {
+
+            console.log(testData);
+
+            res.send(testData.rows);
+
+        })
+
+        .catch(err => {
+
+            console.error(err);
+
+            res.status(500).send('Error retrieving data from database');
+
+        });
+
+});
